@@ -1,0 +1,148 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+  </head>
+  <body>
+    <h1>Power Platform connectors</h1>
+    <input
+      type="text"
+      id="searchInput"
+      onkeyup="search()"
+      placeholder="Search..."
+    />
+    <table id="connectorsTable">
+      <tr class="header">
+        <th style="width: 40px"></th>
+        <th style="width: 300px"></th>
+        <th style="width: 300px"></th>
+        <th style="text-align: center; width: 40px">Power Apps</th>
+        <th style="text-align: center; width: 40px">Power Automate</th>
+        <th style="text-align: center; width: 40px">Logic Apps</th>
+        <th style="text-align: center; width: 40px">Premium</th>
+        <th style="text-align: center; width: 40px">Preview</th>
+      </tr>
+      <tr class="icons">
+        <td></td>
+        <td>Name</td>
+        <td>Internal name</td>
+        <td>
+          <img
+            width="16"
+            title="Power Apps"
+            alt="Power Apps"
+            src="icons/powerapps-48.png"
+          />
+        </td>
+        <td>
+          <img
+            width="16"
+            title="Power Automate"
+            alt="Power Automate"
+            src="icons/powerautomate-32.png"
+          />
+        </td>
+        <td>
+          <img
+            width="16"
+            title="Logic apps"
+            alt="Logic apps"
+            src="icons/logicapps-32.png"
+          />
+        </td>
+        <td>
+          <img
+            width="16"
+            title="Premium"
+            alt="Premium"
+            src="icons/premium-32.png"
+          />
+        </td>
+        <td>
+          <img
+            width="16"
+            title="Preview"
+            alt="Preview"
+            src="icons/preview-32.png"
+          />
+        </td>
+      </tr>
+    </table>
+    <script>
+      function debounce(func, timeout = 300) {
+        let timer
+        return (...args) => {
+          clearTimeout(timer)
+          timer = setTimeout(() => {
+            func.apply(this, args)
+          }, timeout)
+        }
+      }
+
+      function shouldHideConnector(connector) {
+        return connector.SearchTerms.indexOf(window.connectorFilter) == -1
+      }
+
+      function addConnectorsToTable() {
+        const header = document.getElementById("connectorsTable").rows[0]
+        const icons_header = document.getElementById("connectorsTable").rows[1]
+        const check = '<span class="icon material-symbols-outlined">done</span>'
+        table.innerHTML = ""
+        table.appendChild(header)
+        table.appendChild(icons_header)
+        window.connectors.forEach((connector) => {
+          if (window.connectorFilter && shouldHideConnector(connector)) return
+          // javascript create table row with 4 cells
+          var row = table.insertRow()
+          var cell1 = row.insertCell(0) // icon
+          var cell2 = row.insertCell(1) // name
+          var cell3 = row.insertCell(2) // internal name
+          var cell4 = row.insertCell(3) // power apps
+          var cell5 = row.insertCell(4) // power automate
+          var cell6 = row.insertCell(5) // logic apps
+          var cell7 = row.insertCell(6) // premium
+          var cell8 = row.insertCell(7) // preview
+          var img = document.createElement("img")
+          img.src = connector.Icon
+          img.style = "width: 32px"
+          cell1.appendChild(img)
+
+          var link = document.createElement("a")
+          link.href = `https://docs.microsoft.com/en-us/connectors/${connector.Name}/`
+          link.target = "_blank"
+          link.textContent = connector.DisplayName
+          cell2.appendChild(link)
+          cell3.innerHTML = connector.Name
+          cell4.innerHTML = connector["Power Apps"] ? check : ""
+          cell5.innerHTML = connector["Power Automate"] ? check : ""
+          cell6.innerHTML = connector["Logic Apps"] ? check : ""
+          cell7.innerHTML = connector.Premium ? check : ""
+          cell8.innerHTML = connector.Preview ? check : ""
+        })
+      }
+
+      function doSearch() {
+        const input = document.getElementById("searchInput")
+        const filter = input.value.toLowerCase()
+        console.log(filter)
+        window.connectorFilter = filter
+        addConnectorsToTable()
+      }
+
+      const search = debounce(() => doSearch())
+
+      var table = document.getElementById("connectorsTable")
+      fetch("./connectors.json", {
+        mode: "same-origin",
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          window.connectors = json.data
+          addConnectorsToTable()
+        })
+    </script>
+  </body>
+</html>

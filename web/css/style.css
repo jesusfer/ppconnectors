@@ -1,0 +1,67 @@
+body {
+  font-family: Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+#searchInput {
+  background-image: url("/icons/search.png"); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 14pt; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+#connectorsTable {
+  border-collapse: collapse; /* Collapse borders */
+  width: 100%; /* Full-width */
+  border: 1px solid #ddd; /* Add a grey border */
+  font-size: 11pt; /* Increase font-size */
+}
+
+#connectorsTable th,
+#connectorsTable td {
+  text-align: left; /* Left-align text */
+  padding: 12px; /* Add padding */
+}
+
+#connectorsTable td:nth-child(n + 4) {
+  text-align: center;
+}
+
+#connectorsTable tr:nth-child(n + 2) {
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+#connectorsTable tr.header {
+  background-color: #f1f1f1;
+  font-size: 12pt;
+  font-weight: 600;
+}
+
+#connectorsTable tr.icons {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  font-size: 12pt;
+  font-weight: 600;
+
+  position: sticky;
+  position: -webkit-sticky;
+  top: 5px;
+  z-index: 2;
+}
+
+#connectorsTable tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+}
+#connectorsTable .icon {
+  color: green;
+}
