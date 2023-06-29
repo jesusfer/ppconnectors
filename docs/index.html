@@ -6,9 +6,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
     />
+    <title>Power Platform Connectors</title>
   </head>
   <body>
-    <h1>Power Platform connectors</h1>
+    <h1>Power Platform Connectors</h1>
     <input
       type="text"
       id="searchInput"
@@ -109,6 +110,7 @@
           var img = document.createElement("img")
           img.src = connector.Icon
           img.style = "width: 32px"
+          img.loading = "lazy"
           cell1.appendChild(img)
 
           var link = document.createElement("a")
