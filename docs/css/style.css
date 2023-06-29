@@ -7,9 +7,10 @@ h1 {
 }
 
 #searchInput {
-  background-image: url("/icons/search.png"); /* Add a search icon to input */
+  background-image: url("/icons/search.svg"); /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
+  background-size: 24px;
   width: 100%; /* Full-width */
   font-size: 14pt; /* Increase font-size */
   padding: 12px 20px 12px 40px; /* Add some padding */

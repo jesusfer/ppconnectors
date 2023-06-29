@@ -6,7 +6,7 @@ const port = 8000
 
 app.use(
   "/",
-  express.static(path.join(__dirname, "web/"), {
+  express.static(path.join(__dirname, "docs/"), {
     index: "index.html",
   })
 )

@@ -1,6 +1,6 @@
 <html>
   <head>
-    <link rel="icon" type="image/png" href="icons/search.png" />
+    <link rel="icon" type="image/svg" href="icons/search.svg" />
     <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
@@ -91,7 +91,9 @@
       function addConnectorsToTable() {
         const header = document.getElementById("connectorsTable").rows[0]
         const icons_header = document.getElementById("connectorsTable").rows[1]
-        const check = '<span class="icon material-symbols-outlined">done</span>'
+        // const check = '<span class="icon material-symbols-outlined">done</span>'
+        // const check = '<img class="icon" src="icons/check.svg"/>'
+        const check = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="48"><path fill="currentColor" stroke="currentColor" d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z"/></svg>'
         table.innerHTML = ""
         table.appendChild(header)
         table.appendChild(icons_header)
