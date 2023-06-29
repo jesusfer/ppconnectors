@@ -38,6 +38,6 @@ for cell in cells:
     connectors.append(connector)
 # Save JSON
 json_output = json.dumps({"data": connectors}, separators=(",", ":"))
-file = open("web/connectors.json", "w", encoding="utf8")
+file = open("docs/connectors.json", "w", encoding="utf8")
 file.write(json_output)
 file.close()
