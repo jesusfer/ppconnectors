@@ -28,7 +28,10 @@ for cell in cells:
     tag_a = cell.find("a", recursive=False)
     if type(tag_a) is Tag:
         # href path -> internalname
-        connector["Name"] = tag_a.attrs["href"][3:-1]
+        href = tag_a.attrs["href"]
+        last_slash = href[:-1].rfind("/") + 1
+        connector["Name"] = tag_a.attrs["href"][last_slash:-1]
+    
     connector["SearchTerms"] = (
         connector["Name"].lower() + " " + connector["DisplayName"].lower()
     )
