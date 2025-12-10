@@ -16,21 +16,21 @@ connectors = []
 features = ["Logic Apps", "Power Automate", "Power Apps", "Preview", "Premium"]
 
 for cell in cells:
-    connector = {}
+    connector : dict[str,str] = {}
 
     tag_img = cell.find("img", recursive=False, attrs={"data-linktype": "external"})
     if type(tag_img) is Tag:
         # title -> name
         # src -> icon
-        connector["DisplayName"] = tag_img.attrs["title"]
-        connector["Icon"] = tag_img.attrs["src"]
+        connector["DisplayName"] = str(tag_img.attrs["title"])
+        connector["Icon"] = str(tag_img.attrs["src"])
 
     tag_a = cell.find("a", recursive=False)
     if type(tag_a) is Tag:
         # href path -> internalname
-        href = tag_a.attrs["href"]
+        href = str(tag_a.attrs["href"])
         last_slash = href[:-1].rfind("/") + 1
-        connector["Name"] = tag_a.attrs["href"][last_slash:-1]
+        connector["Name"] = str(tag_a.attrs["href"][last_slash:-1])
     
     connector["SearchTerms"] = (
         connector["Name"].lower() + " " + connector["DisplayName"].lower()
@@ -38,6 +38,8 @@ for cell in cells:
     for feature in features:
         tag_feature = cell.find("img", recursive=False, attrs={"alt": feature})
         connector[feature] = tag_feature != None
+
+    connector["MCP"] = "MCP" in connector["DisplayName"]
     connectors.append(connector)
 # Save JSON
 json_output = json.dumps({"data": connectors}, separators=(",", ":"))
