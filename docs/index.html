@@ -118,6 +118,7 @@
           var cell6 = row.insertCell(5) // logic apps
           var cell7 = row.insertCell(6) // premium
           var cell8 = row.insertCell(7) // preview
+          var cell9 = row.insertCell(8) // mcp
           var img = document.createElement("img")
           img.src = connector.Icon
           img.style = "width: 32px"
@@ -135,6 +136,7 @@
           cell6.innerHTML = connector["Logic Apps"] ? check : ""
           cell7.innerHTML = connector.Premium ? check : ""
           cell8.innerHTML = connector.Preview ? check : ""
+          cell9.innerHTML = connector.MCP ? check : ""
         })
       }
 
