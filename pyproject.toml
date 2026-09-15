@@ -1,0 +1,19 @@
+[project]
+name = "ppconnectors-git"
+version = "0.1.0"
+description = "Get the connectors information and display it in a easy to use website."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "beautifulsoup4==4.15.0",
+    "certifi",
+    "charset-normalizer",
+    "idna",
+    "requests",
+    "soupsieve",
+    "urllib3",
+]
+
+[[tool.uv.index]]
+name = "MSFT"
+url = "https://packagefeedproxy.microsoft.io/pypi/simple"
